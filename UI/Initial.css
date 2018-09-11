@@ -1,0 +1,50 @@
+body{
+    background-image: url("dough.jpg");
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+display: inline;
+}
+
+.links a {
+    float: right;
+    display: block;
+    color:purple;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    }
+
+    .links a:hover {
+    color:rgb(48, 5, 48);
+    }
+
+    .name{
+        position: fixed;
+        top:50%;
+        left:50%;
+        width:40em;
+        height:10em;
+        margin-top: -5em; /*set to a negative number 1/2 of your height*/
+        margin-left: -20em; /*set to a negative number 1/2 of your width*/
+        border: 1px solid purple;
+        background-color:white;
+    }
+
+    h1{
+        text-align: center;
+        padding: 0px;
+        color:purple;
+        font-size:50px;
+    }
+
+   h1 sub{
+        font-size: 20px;
+    }
