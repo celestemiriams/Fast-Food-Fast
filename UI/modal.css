@@ -54,6 +54,11 @@
     border-bottom: 2px solid rgb(48, 5, 48);
 }
 
+#mymodal{
+    margin: auto;
+    margin-left:10px;
+}
+
 .modal-form input[type="text"], .modal-form input[type="submit"], .modal-form input[type="number"]{
     margin-bottom: 15px;
     padding: 10px;
