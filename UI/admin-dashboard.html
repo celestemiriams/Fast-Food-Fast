@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fast-Food-Fast</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="modal.css">
+
+    </head>
+
+    <body>
+             <!--Navigation bar-->
+                <div class="topnav">
+                        <div class="title">
+                                <a href="#">Fast-Food-Fast</a>
+                        </div>
+
+                        <div class="rightnav">
+                                <a href="#">Fast-Food items</a>
+                                <a href="#modal">Add Fast-Food Items</a>
+                                <a href="#">Orders</a>
+                        </div>
+                        
+                               
+                </div>
+                
+
+                <section>
+
+                    <div class="modal-container" id="modal">
+                            <div class="modal">
+                                <a href="#" class="close">X</a>
+                                <span class="modal-heading">
+                                        Add Fast-Food Item
+                                </span>
+                                <form class="modal-form" onsubmit="return validateForm()">
+                                        <input type="text" name="name" placeholder="Item name"><br>
+                                        <input type="text" name="category" placeholder="Category"><br>
+                                        <input type="text" name="price" placeholder="Price"><br>
+                                        <input type="number" name="quantity" placeholder="Quantity"><br>
+                                        <textarea rows="10" cols="50" placeholder="Description" name="details"></textarea><br>
+                                        <input type="submit" class="btnAdditem" value="Add Item">
+                                </form>
+                            </div>
+                        </div>
+                   
+                      
+                </section>
+        
+                <footer>
+                    <p>All rights reserved</p>
+                </footer>
+
+
+        
+    </body>
+
+
+</html>
