@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fast-Food-Fast</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="navmenu.css">
+    </head>
+
+    <body>
+             <!--Navigation bar-->
+                <div class="topnav">
+                        <div class="title">
+                                <a href="Index.html">Fast-Food-Fast</a>
+                        </div>
+
+                        <div class="rightnav">
+                                <a href="#"> Ordered Food History</a>
+
+                                <div class="dropdown">
+                                    <button class="dropbtn" onclick="myFunction()">Order For Food</button>
+                                    <div class="dropdown-content" id="myDropdown">
+                                            <a href="#">Pizza</a>
+                                            <a href="#">Sandwich</a>
+                                            <a href="#">Fast-Food</a>
+                                            <a href="#">Drinks</a>
+                                    </div>
+                                </div>
+        
+                                <a href="Index.html">Home</a>
+                        </div>
+                        
+                               
+                </div>
+                
+
+                <section>
+                    <div class="myform">
+                            <form name="Order">
+                                    <table>
+                                            <th>Fill in the fields to finish your order</th>
+                                            <tr>
+                                                    <td>Item Name: </td>
+                                                    <td><input type="text" name="name"></td>
+                                            </tr>
+                                            <tr>
+                                                    <td>Category: </td>
+                                                    <td><input type="text" name="category"></td>
+                                                </tr>
+                                            <tr>
+                                                <td>Price: </td>
+                                                <td><input type="text" name="price"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Quantity: </td>
+                                                <td>
+                                                    <input type="number" name="quantity">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total: </td>
+                                                <td>
+                                                    <input type="text" name="total">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <input type="submit" value="Place Order">
+                            </form>
+                    </div>
+                   
+                      
+                </section>
+        
+                <footer>
+                    <p>All rights reserved</p>
+                </footer>
+
+            <script>
+                    function myFunction() {
+                         document.getElementById("myDropdown").classList.toggle("show");
+                }
+
+                // Close the dropdown if the user clicks outside of it
+                window.onclick = function(e) {
+                if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                    if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                    }
+                }
+                }
+
+            </script>
+
+        
+    </body>
+
+
+</html>
