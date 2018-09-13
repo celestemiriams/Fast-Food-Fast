@@ -1,0 +1,101 @@
+body{
+    margin:0px;
+    border:0px;
+}
+
+.special {
+    float:right;
+}
+
+.title{
+    float: left;
+    margin-left: 50px;
+}
+
+.topnav .title a{
+    font-size: 25px;
+    
+}
+
+.rightnav{
+    margin-right: 50px;
+    float: right;
+}
+
+.topnav{
+    overflow: hidden;
+    background-color: purple;
+    }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+display: inline;
+}
+
+.topnav a {
+float: right;
+display: block;
+color:white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+
+ a:hover{
+background-color:rgb(48, 5, 48);
+color:white;
+}
+
+section{
+    width:100%;
+    background-color: white;
+    height:500px;
+}
+
+input[type=text], input[type=number]{
+    width: 100%;
+    padding: 12px 40px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 20%;
+    background-color:green;
+    color: white;
+    padding: 14px 40px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color:rgb(38, 59, 6);
+}
+
+form{
+    margin: 0 auto;
+    
+}
+
+.myform{
+    margin-left: 10%;
+    margin-top: 3%;
+}
+/* CSS for the footer*/
+footer {
+    background-color:rgb(48, 5, 48);
+    padding: 2px;
+    text-align: center;
+    color: white;
+}
