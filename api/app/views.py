@@ -14,8 +14,6 @@ class Urls(object):
     def generate(app):
         """
         Generate urls on the app context
-        It takes no arguments
-        :param app: takes in the app variable
         :return: urls
         """
 
@@ -24,12 +22,12 @@ class Urls(object):
         app.add_url_rule('/api/v1/orders/',
                          view_func=OrdersController.as_view('get_all_orders'),
                          methods=['GET'], strict_slashes=False)
-        app.add_url_rule('/api/v1/orders/<int:orders_id>/',
+        app.add_url_rule('/api/v1/orders/<int:order_id>/',
                          view_func=OrdersController.as_view('get_an_order'),
                          methods=['GET'], strict_slashes=False)
         app.add_url_rule('/api/v1/orders/',
                          view_func=OrdersController.as_view('post_an_order'),
                          methods=['POST'], strict_slashes=False)
         app.add_url_rule('/api/v1/orders/<int:order_id>/',
-                         view_func=OrdersController.as_view('update_order_status'), methods=['PUT'],
+                         view_func=OrdersController.as_view('put'), methods=['PUT'],
                          strict_slashes=False)
