@@ -5,7 +5,7 @@ This module contains the end point for orders
 from flask import request, jsonify, Response, json
 from flask.views import MethodView
 from api.app.models import OrderData
-from .orders import Orders
+#from .orders import Orders
 
 class OrdersController(MethodView):
     """A class-based view that dispatches request methods to the corresponding
@@ -13,16 +13,13 @@ class OrdersController(MethodView):
     """
     orders = OrderData.order_data
 
-    def welcome(self):
-        return 'Welcome to Fast_Food_Fast website for your food delivery services!'
-
     def get(self, order_id=None):
         """
-        This function retrieves all orders made by users 
+        This function retrieves all orders made by users
         or retrieves a specific order if order id is given
         """
 
-        #return a single order 
+        #return a single order
         if order_id:
             single_order = {}
             for order in self.orders:
@@ -40,7 +37,7 @@ class OrdersController(MethodView):
             #return all orders if no id is specified
             return jsonify({'orders':self.orders})
 
-    def post(self, order_id=None):
+    def post(self):
         """
         responds to post requests
         :param order_id:
@@ -60,10 +57,8 @@ class OrdersController(MethodView):
         request_data = request.get_json()
         if valid_order(request_data):
             make_order = {
-                    'order_id':len(self.orders) + 1,
-                    'item_category':request_data['item_category'],
-                    'item_name':request_data['item_name'],
-                    'quantity':request_data['quantity']
+                'order_id':len(self.orders) + 1, 'item_category':request_data['item_category'],
+                'item_name':request_data['item_name'], 'quantity':request_data['quantity']
                 }
             self.orders.append(make_order)
             response = Response("", 201, mimetype="application/json")
@@ -94,7 +89,7 @@ class OrdersController(MethodView):
                             order_json = request.get_json()
                             order['order_status'] == order_json['order_status']
                     return jsonify({"orders": [order for order in self.orders]})
-                
+
                 else:
                     raise TypeError("order status cannot be a boolean")
 
@@ -108,9 +103,7 @@ class OrdersController(MethodView):
 # Validating an order
 def valid_order(order_object):
     """
-    Check if user enters valid order details 
+    Check if user enters valid order details
     """
     if 'item_category' in order_object and 'item_name' in order_object and 'quantity' in order_object:
         return True
-    else:
-        return False
