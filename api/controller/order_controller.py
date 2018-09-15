@@ -1,73 +1,108 @@
 """
-This module contains the orders controller
+This module contains the end point for orders
 """
 
 from flask import request, jsonify, Response, json
 from flask.views import MethodView
 from api.app.models import OrderData
+from .orders import Orders
 
 class OrdersController(MethodView):
     """A class-based view that dispatches request methods to the corresponding
-        class methods. For example, if you implement a ``get`` method, it will be
-        used to handle ``GET`` requests. :
+    end points
     """
+    orders = OrderData.order_data
 
     def welcome(self):
         return 'Welcome to Fast_Food_Fast website for your food delivery services!'
 
-    #Get all Orders
-    def get_all_orders(self):
+    def get(self, order_id=None):
         """
-        This function retrieves all orders made by users
+        This function retrieves all orders made by users 
+        or retrieves a specific order if order id is given
         """
-        orders = OrderData.order_data
-        return jsonify({'orders':orders})
 
-    #Get a specific order
-    def get_an_order(self, order_id):
-        """This function returns a specific order given the order id"""
-        orders = OrderData.order_data
-
+        #return a single order 
         if order_id:
-            order_ = {}
-            for order in orders:
+            single_order = {}
+            for order in self.orders:
                 if order['order_id'] == order_id:
-                    order_ = {
+                    single_order = {
                         'order_id':order['order_id'],
                         'item_category':order['item_category'],
                         'item_name':order['item_name'],
-                        'quantity':order['quantity']
+                        'quantity':order['quantity'],
+                        'order_status':order['order_status']
                     }
-            return jsonify(order_)
+            return jsonify(single_order)
+
+        else:
+            #return all orders if no id is specified
+            return jsonify({'orders':self.orders})
+
+    def post(self, order_id=None):
+        """
+        responds to post requests
+        :param order_id:
+        :return:
+        """
+        if str(request.url_rule) == "/api/v1/orders/":
+            return OrdersController.post_an_order(self)
+
+        return 'Errors'  # ReturnHandlers.could_not_process_request()
+
 
     #Make an order
     def post_an_order(self):
         """
         This function enables a user to make an order
         """
-        orders = OrderData.order_data
         request_data = request.get_json()
         if valid_order(request_data):
             make_order = {
-                'order_id':request_data['order_id'],
-                'item_category':request_data['item_category'],
-                'item_name':request_data['item_name'],
-                'quantity':request_data['quantity']
-            }
-            orders.append(make_order)
+                    'order_id':len(self.orders) + 1,
+                    'item_category':request_data['item_category'],
+                    'item_name':request_data['item_name'],
+                    'quantity':request_data['quantity']
+                }
+            self.orders.append(make_order)
             response = Response("", 201, mimetype="application/json")
-            response.headers['Location'] = "orders/" + str(request_data['question_id'])
+            response.headers['Location'] = "orders/" + str(len(self.orders) + 1)
             return response
+
         else:
             bad_object = {
-                "error": "Invalid Order Format",
-                "help format": "Request format should be {'order_id': '5','item_category': 'snacks',"
+                "error": "Please fill in all the fields",
+                "help format": "Request format should be {'item_category': 'snacks',"
                                "'item_name': 'chips','quantity': '2' }"
             }
             response = Response(json.dumps(bad_object), status=400, mimetype="application/json")
             return response
 
     #update order status
+    def put(self, order_id):
+        """
+        Function to update order status by marking it complete,
+        declining or accepting it
+        """
+
+        if isinstance(order_id, int):
+            if not order_id < 0:
+                if not isinstance(order_id, bool):
+                    for order in self.orders:
+                        if order['order_id'] == order_id:
+                            order_json = request.get_json()
+                            order['order_status'] == order_json['order_status']
+                    return jsonify({"orders": [order for order in self.orders]})
+                
+                else:
+                    raise TypeError("order status cannot be a boolean")
+
+            else:
+                raise ValueError("order id cannot be a int less than 0")
+
+        else:
+            raise TypeError("order id cannot be a string")
 
 
 # Validating an order
@@ -75,7 +110,7 @@ def valid_order(order_object):
     """
     Check if user enters valid order details 
     """
-    if 'order_id' in order_object and 'item_category' in order_object and 'item_name' in order_object and 'quantity' in order_object:
+    if 'item_category' in order_object and 'item_name' in order_object and 'quantity' in order_object:
         return True
     else:
         return False
