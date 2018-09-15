@@ -5,7 +5,7 @@ Urls class, to handle request urls
 from ..controller.order_controller import OrdersController
 
 
-class Urls(object):
+class Urls:
     """
     Class to generate urls via static method generate
     """
