@@ -46,19 +46,30 @@ class Tests(TestCase):
                  quantity=2)), content_type='application/json')
         self.assertEqual(result.status_code, 201)
 
-    # def test_update_order_status(self):
-    #     """
-    #     Test case for order endpoint, it tests updates made to an order
-    #     """
-    #     result = self.client().put('/api/v1/orders/20/')
-    #     self.assertEqual(result.status_code, 200)
+        result = self.client().post('/api/v1/orders/', data=json.dumps(
+            dict(order_id=10, item_category="snacks", item_name="",)),
+             content_type='application/json')
+        self.assertEqual(result.status_code, 400)
 
-    #     result = self.client().put('/api/v1/orders/@/')
-    #     self.assertEqual(result.status_code, 404)
 
-    #     result = self.client().put('/api/v1/orders/1/', data=json.dumps(
-    #         dict(item_category="snacks", item_name="chips", quantity=2)),
-    #                             content_type='application/json')
-    #     resp = json.loads(result.data.decode("utf8"))
-    #     self.assertEqual(result.status_code, 201)
-    #     self.assertIn("success_message", resp)
+    def test_update_order_status(self):
+        """
+        Test case for order endpoint, it tests updates made to an order
+        """
+        res = self.client().put('api/v1/orders/1',
+                                    content_type="application/json",
+                                    data=json.dumps(dict(order_id=2,
+                                                         order_status=
+                                                         "Pending")))
+        res1 = self.client().put('api/v1/orders/1',
+                                    content_type="application/json",
+                                    data=json.dumps(dict(order_id=2,
+                                                         order_status=
+                                                         "Ready")))
+        respond = json.loads(res1.data.decode("utf8"))
+        self.assertIn('Updated order', respond)
+        self.assertIsInstance(respond, dict)
+        self.assertEqual(res.status_code, 200)
+        self.assertTrue(res.json["Updated order"])
+        self.assertEqual(res1.status_code, 200)
+        self.assertTrue(res1.json["Updated order"])
