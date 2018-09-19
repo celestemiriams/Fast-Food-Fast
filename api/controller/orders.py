@@ -1,4 +1,5 @@
-"""This is orders class defining the class constructor """
+"""This is the orders module """
+from datetime import datetime
 
 class Orders:
     """This is orders class"""
@@ -8,12 +9,7 @@ class Orders:
         self.order_id = order_id
         self.item_category = item_category
         self.item_name = item_name
-        self.order_status = order_status
+        self.order_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.order_status = "pending"
         #self.user_id = user_id
 
-    class OrderStatus:
-        """Class contains status variables"""
-        pending = "pending"
-        accepted = "accepted"
-        declined = "declined"
-        completed = "completed"
