@@ -11,5 +11,3 @@ class Orders:
         self.item_name = item_name
         self.order_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.order_status = "pending"
-        #self.user_id = user_id
-
