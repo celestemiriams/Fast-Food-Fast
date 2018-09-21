@@ -11,16 +11,16 @@ This is a food delivery service app for a restaurant
     Fast-Food-Fast is an application that provides food delivery services for its users
 
 #### Features
-A user can make an order
-A user can get a list of orders
-A user can get a specific order
-A user can update order status
+- A user can make an order
+- A user can get a list of orders
+- A user can get a specific order
+- A user can update order status
 
 ### Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 #### Prerequistes
-    What things you need to install the software 
+Things you need to install the software include: 
     * Virtualenv
     * Python3
     * Flask
@@ -29,19 +29,25 @@ These instructions will get you a copy of the project up and running on your loc
 #### Development setup
     
 ##### Create a virtual environment and activate it
+```
  virtualenv venv
  source /env/bin/activate
+
+```
 
 ##### Install dependencies
 pip3 install -r requirements.txt
 
 ##### Run the application
+```
 cd Fast-Food-Fast
 python run.py
 
+```
+
 ##### You can access the application End points:
 | End Point                    | Verb   | Use                            |
-|:----------------------------:|:------:|:------------------------------:|
+|:---------------------------- |:------:|:------------------------------ |
 |/api/v1/orders/               |  GET	| Gets a list of all orders      |
 |/api/v1/orders/<int:order_id>/|  GET	| Gets a specific specific order |
 |/api/v1/orders/               |  POST  | Posting an order               |
