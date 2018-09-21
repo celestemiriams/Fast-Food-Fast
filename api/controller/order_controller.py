@@ -29,7 +29,7 @@ class OrdersController(MethodView):
                         'item_category':order['item_category'],
                         'item_name':order['item_name'],
                         'quantity':order['quantity'],
-                        'order_status':order['order_status']
+                        'order_status':None
                     }
             return jsonify(single_order)
 
@@ -46,8 +46,7 @@ class OrdersController(MethodView):
         if str(request.url_rule) == "/api/v1/orders/":
             return OrdersController.post_an_order(self)
 
-        return 'Errors'  # ReturnHandlers.could_not_process_request()
-
+        return 'Errors'
 
     #Make an order
     def post_an_order(self):
@@ -84,8 +83,9 @@ class OrdersController(MethodView):
         if order_id:
             for order in self.orders:
                 order_ = request.get_json()
-                order.order_status = order_['order_status']
-            return {'updated order': [order.__dict__ for order in self.orders]}
+                order['order_status'] = order_['order_status']
+                return jsonify({'updated status': self.orders}), 201
+        return jsonify({'message': 'order does not exist'}), 404
 
 # Validating an order
 def valid_order(order_object):
