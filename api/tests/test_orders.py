@@ -56,20 +56,6 @@ class Tests(TestCase):
         """
         Test case for order endpoint, it tests updates made to an order
         """
-        res = self.client().put('api/v1/orders/1',
-                                    content_type="application/json",
-                                    data=json.dumps(dict(order_id=2,
-                                                         order_status=
-                                                         "Pending")))
-        res1 = self.client().put('api/v1/orders/1',
-                                    content_type="application/json",
-                                    data=json.dumps(dict(order_id=2,
-                                                         order_status=
-                                                         "Ready")))
-        respond = json.loads(res1.data.decode("utf8"))
-        self.assertIn('Updated order', respond)
-        self.assertIsInstance(respond, dict)
-        self.assertEqual(res.status_code, 200)
-        self.assertTrue(res.json["Updated order"])
-        self.assertEqual(res1.status_code, 200)
-        self.assertTrue(res1.json["Updated order"])
+        result = self.client().put('/api/v1/orders/1', content_type='application/json',
+                                    data=json.dumps(dict(order_status="accepted")))
+        self.assertEqual(result.status_code, 201)        
