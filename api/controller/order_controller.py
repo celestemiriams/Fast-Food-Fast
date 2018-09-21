@@ -5,7 +5,7 @@ This module contains the end point for orders
 from flask import request, jsonify, Response, json
 from flask.views import MethodView
 from api.app.models import OrderData
-from .orders import Orders
+#from .orders import Orders
 
 class OrdersController(MethodView):
     """A class-based view that dispatches request methods to the corresponding
