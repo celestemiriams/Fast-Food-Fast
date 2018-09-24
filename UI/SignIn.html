@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Fast-Food-Fast</title>
-        <link rel="stylesheet" type="text/css" href="SignIn.css">
+        <link rel="stylesheet" type="text/css" href="mycss/SignIn.css">
 
     </head>
 
@@ -15,7 +15,11 @@
                         <h3>Login</h3>
                         <input type="email" name="email" placeholder="Email"><br>
                         <input type="password" name="password" placeholder="Password"><br>
-                        <input type="submit" value="Signin"><br><br>
+                        <select name="user_type" id="user_type" required >
+                                <option value="client">Client</option>
+                                <option value="admin">Admin</option>
+                        </select> 
+                        <input type="button" class="btn-login" onclick="validate()" value="Login">                                               
                     </form>
         
                     <!--Creating a link to the signup page-->
