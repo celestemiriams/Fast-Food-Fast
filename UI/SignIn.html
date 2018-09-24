@@ -3,7 +3,7 @@
     <head>
         <title>Fast-Food-Fast</title>
         <link rel="stylesheet" type="text/css" href="mycss/SignIn.css">
-
+        <script src="myjavascript/SignIn.js"></script>
     </head>
 
     <body>
@@ -13,9 +13,9 @@
                     <!--Creating a login form-->
                     <form>
                         <h3>Login</h3>
-                        <input type="email" name="email" placeholder="Email"><br>
-                        <input type="password" name="password" placeholder="Password"><br>
-                        <select name="user_type" id="user_type" required >
+                        <input type="email" name="email" placeholder="Email" required><br>
+                        <input type="password" name="password" placeholder="Password" required><br>
+                        <label>User Type:</label> <select name="user_type" id="user_type" required >
                                 <option value="client">Client</option>
                                 <option value="admin">Admin</option>
                         </select> 
