@@ -28,6 +28,9 @@ View Order History
 The signup page allows users to create accounts
 The signin page allows users to login with their credentials
 ```
+### Link to Github pages
+
+[This is a link to my Github pages](https://celestemiriams.github.io/Fast-Food-Fast/)
 
 ### Building Tools
 ```
