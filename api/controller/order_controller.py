@@ -5,7 +5,6 @@ This module contains the end point for orders
 from flask import request, jsonify, Response, json
 from flask.views import MethodView
 from api.app.models import OrderData
-#from .orders import Orders
 
 class OrdersController(MethodView):
     """A class-based view that dispatches request methods to the corresponding
@@ -79,12 +78,12 @@ class OrdersController(MethodView):
         Function to update order status by marking it complete,
         declining or accepting it
         """
-        #keys = 'order_status'
-        if order_id:
-            for order in self.orders:
+
+        for order in self.orders:
+            if order['order_id'] == order_id:
                 order_ = request.get_json()
                 order['order_status'] = order_['order_status']
-                return jsonify({'updated status': self.orders}), 201
+                return jsonify({'updated status': order}), 201
         return jsonify({'message': 'order does not exist'}), 404
 
 # Validating an order
