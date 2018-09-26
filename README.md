@@ -1,7 +1,11 @@
 # Fast-Food-Fast
-This is a food delivery service app for a restaurant 
+This is a food delivery service app for a restaurant. 
 
 ### Features
+
+#### Index page
+This is the first page of the application which has links directing the user to the signin and signup pages if they have or do not have accounts respectively.
+
 #### Admin Dashboard
 The admin dashboard allows the admin to carry out the following;
 
@@ -12,7 +16,7 @@ Update order status
  ```
 
 #### User Dashboard
-The user dashboard allows the user to do the following;
+The user dashboard allows the clients to do the following;
 
 ```
 Place an order
