@@ -31,24 +31,11 @@ class OrdersController(MethodView):
                         'order_status':None
                     }
             return jsonify(single_order)
-
-        else:
-            #return all orders if no id is specified
-            return jsonify({'orders':self.orders})
-
-    def post(self):
-        """
-        responds to post requests
-        :param order_id:
-        :return:
-        """
-        if str(request.url_rule) == "/api/v1/orders/":
-            return OrdersController.post_an_order(self)
-
-        return 'Errors'
+        #return all orders if no id is specified
+        return jsonify({'orders':self.orders})
 
     #Make an order
-    def post_an_order(self):
+    def post(self):
         """
         This function enables a user to make an order
         """
@@ -58,16 +45,20 @@ class OrdersController(MethodView):
                 'order_id':len(self.orders) + 1, 'item_category':request_data['item_category'],
                 'item_name':request_data['item_name'], 'quantity':request_data['quantity']
                 }
-            self.orders.append(make_order)
-            response = Response("", 201, mimetype="application/json")
-            response.headers['Location'] = "orders/" + str(len(self.orders) + 1)
-            return response
+
+            if not isinstance(request_data['quantity'], int) or request_data['quantity'] == "":
+                return jsonify({'error': 'quantity should be a number'}), 400
+            else:
+                self.orders.append(make_order)
+                response = Response("", 201, mimetype="application/json")
+                response.headers['Location'] = "orders/" + str(len(self.orders) + 1)
+                return response
 
         else:
             bad_object = {
                 "error": "Please fill in all the fields",
                 "help format": "Request format should be {'item_category': 'snacks',"
-                               "'item_name': 'chips','quantity': '2' }"
+                               "'item_name': 'chips','quantity': 2 }"
             }
             response = Response(json.dumps(bad_object), status=400, mimetype="application/json")
             return response
@@ -83,6 +74,8 @@ class OrdersController(MethodView):
             if order['order_id'] == order_id:
                 order_ = request.get_json()
                 order['order_status'] = order_['order_status']
+                if order['order_status'] == "":
+                    return jsonify({'message': 'Order status missing'}), 400
                 return jsonify({'updated status': order}), 201
         return jsonify({'message': 'order does not exist'}), 404
 
