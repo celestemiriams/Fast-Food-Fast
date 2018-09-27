@@ -17,8 +17,6 @@ class Urls:
         :return: urls
         """
 
-        app.add_url_rule('/api/v1/',
-                         view_func=OrdersController.as_view('welcome'), strict_slashes=False)
         app.add_url_rule('/api/v1/orders/',
                          view_func=OrdersController.as_view('get_all_orders'),
                          methods=['GET'], strict_slashes=False)
