@@ -30,7 +30,7 @@ The signin page allows users to login with their credentials
 ```
 ### Link to Github pages
 
-[This is a link to my Github pages](https://celestemiriams.github.io/Fast-Food-Fast/)
+[This is a link to my Github pages](https://celestemiriams.github.io/Fast-Food-Fast/UI/index.html)
 
 ### Building Tools
 ```
